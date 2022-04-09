@@ -83,10 +83,10 @@ dependencies {
     // coil library
     implementation("io.coil-kt:coil-compose:2.0.0-rc02")
 
-    // compose viewmodel
+    // compose ViewModel
     implementation 'androidx.lifecycle:lifecycle-viewmodel-compose:2.4.1'
 
-    // webview
+    // WebView
     implementation 'com.google.accompanist:accompanist-webview:0.24.5-alpha'
 
     // swipe refresh

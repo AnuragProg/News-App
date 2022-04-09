@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.newsapp.R
 import com.example.newsapp.presenter.navigationcomponents.NavigationHost
 import com.example.newsapp.ui.theme.NewsAppTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -18,6 +19,8 @@ class MainActivity : ComponentActivity() {
             NavigationHost()
         }
     }
+
+    val image = R.drawable.loading_news_placeholder
 }
 
 @Composable

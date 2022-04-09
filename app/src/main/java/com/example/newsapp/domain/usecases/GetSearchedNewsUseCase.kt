@@ -7,11 +7,8 @@ class GetSearchedNewsUseCase(
     private val newsRepository: NewsRepository
 ){
 
-    suspend operator fun invoke(query: String, page: Int = 1): List<Article>{
+    suspend operator fun invoke(query: String, page: Int = 1): List<Article> {
         val response = newsRepository.getSearchedNews(query = query, page = page)
-        val articles = response.body()?.articles ?: emptyList()
-        return articles.filter{
-            it.description != null || it.urlToImage != null
-        }
+        return response.body()?.articles ?: emptyList()
     }
 }

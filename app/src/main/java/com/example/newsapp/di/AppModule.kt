@@ -39,8 +39,6 @@ object AppModule {
     fun providesNewsUseCase(newsRepository: NewsRepository): NewsUseCases{
         return NewsUseCases(
             getTopHeadlinesUseCase = GetTopHeadlinesUseCase(newsRepository = newsRepository),
-            getPagingTopHeadlinesUseCase = GetPagingTopHeadlinesUseCase(newsRepository = newsRepository),
-            getPagingSearchedNewsUseCase = GetPagingSearchedNewsUseCase(newsRepository = newsRepository),
             getSearchedNewsUseCase = GetSearchedNewsUseCase(newsRepository = newsRepository)
         )
     }
