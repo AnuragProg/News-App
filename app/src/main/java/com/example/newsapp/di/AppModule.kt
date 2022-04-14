@@ -39,11 +39,14 @@ object AppModule {
     fun providesNewsUseCase(newsRepository: NewsRepository): NewsUseCases{
         return NewsUseCases(
             getTopHeadlinesUseCase = GetTopHeadlinesUseCase(newsRepository = newsRepository),
-            getSearchedNewsUseCase = GetSearchedNewsUseCase(newsRepository = newsRepository)
+            getSearchedNewsUseCase = GetSearchedNewsUseCase(newsRepository = newsRepository),
+            getSportsHeadlinesUseCase = GetSportsHeadlinesUseCase(newsRepository = newsRepository),
+            getBusinessHeadlinesUseCase = GetBusinessHeadlinesUseCase(newsRepository = newsRepository),
+            getScienceHeadlinesUseCase = GetScienceHeadlinesUseCase(newsRepository = newsRepository),
+            getTechnologyHeadlinesUseCase = GetTechnologyHeadlinesUseCase(newsRepository = newsRepository),
+            getHealthHeadlinesUseCase = GetHealthHeadlinesUseCase(newsRepository = newsRepository),
+            getEntertainmentHeadlinesUseCase = GetEntertainmentHeadlinesUseCase(newsRepository = newsRepository)
         )
     }
-
-
-
 
 }

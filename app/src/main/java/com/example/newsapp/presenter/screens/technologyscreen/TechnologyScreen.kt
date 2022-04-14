@@ -1,37 +1,37 @@
-package com.example.newsapp.presenter.screens.homescreen
+package com.example.newsapp.presenter.screens.technologyscreen
 
 import android.content.Context
 import android.util.Log
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
 import com.example.newsapp.domain.model.Article
-import com.example.newsapp.presenter.screens.nonewsscreen.NoNewsScreen
-import com.example.newsapp.presenter.screens.utils.NetworkCheck
 import com.example.newsapp.presenter.navigationcomponents.NewsBottomNavigation
 import com.example.newsapp.presenter.navigationcomponents.NewsDrawerNavigation
 import com.example.newsapp.presenter.navigationcomponents.SearchFabButton
+import com.example.newsapp.presenter.screens.nonewsscreen.NoNewsScreen
+import com.example.newsapp.presenter.screens.utils.NetworkCheck
 import com.example.newsapp.presenter.screens.utils.NewsCard
 import com.example.newsapp.presenter.screens.utils.NewsTopBar
 import com.example.newsapp.presenter.viewmodel.NewsViewModel
 import kotlinx.coroutines.launch
 
-@ExperimentalMaterialApi
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun HomeScreen(
+fun TechnologyScreen(
     context: Context,
     newsViewModel: NewsViewModel,
     navController: NavController,
     isInternetAvailableChange: (Boolean) -> Unit,
 ){
-    
+
     val scaffoldState = rememberScaffoldState()
 
     val coroutineScope = rememberCoroutineScope()
@@ -57,7 +57,7 @@ fun HomeScreen(
             isInternetAvailableChange(false)
         }else{
             Log.d("debugging", "Starting to fetch headlines from api")
-            val articleResponse = newsViewModel.getTopHeadlines(page = pageToLoad)
+            val articleResponse = newsViewModel.getTechnologyHeadlines(page = pageToLoad)
             Log.d("debugging", "Article Response from initial launch is $articleResponse")
 
             articles.addAll(articleResponse.filter{ it.title != null })
@@ -67,7 +67,7 @@ fun HomeScreen(
 
     LaunchedEffect(shouldLoadMoreHeadlines){
         if(shouldLoadMoreHeadlines){
-            val articleResponse = newsViewModel.getTopHeadlines(page = ++pageToLoad)
+            val articleResponse = newsViewModel.getTechnologyHeadlines(page = ++pageToLoad)
             articles.addAll(articleResponse.filter{ it.title!=null })
             shouldLoadMoreHeadlines = false
         }
@@ -75,6 +75,7 @@ fun HomeScreen(
 
     Scaffold(
         scaffoldState = scaffoldState,
+        bottomBar = { NewsBottomNavigation(navController = navController) },
         topBar = { NewsTopBar {
             if(scaffoldState.drawerState.isOpen){
                 coroutineScope.launch{
@@ -85,15 +86,13 @@ fun HomeScreen(
                     scaffoldState.drawerState.open()
                 }
             }
-        }},
+        }
+        },
         floatingActionButton = {
             SearchFabButton(navController = navController)
         },
         floatingActionButtonPosition = FabPosition.Center,
         isFloatingActionButtonDocked = true,
-        bottomBar = {
-            NewsBottomNavigation(navController = navController)
-                    },
         drawerContent = {
             NewsDrawerNavigation(navController = navController)
         }

@@ -3,6 +3,7 @@ package com.example.newsapp.presenter.screens.searchscreen
 import android.content.Context
 import android.util.Log
 import android.widget.Toast
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.*
 import androidx.compose.material.*
@@ -13,10 +14,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.newsapp.domain.model.Article
+import com.example.newsapp.presenter.screens.nonewsscreen.NoNewsScreen
 import com.example.newsapp.presenter.screens.utils.NetworkCheck
-import com.example.newsapp.presenter.screens.utils.NewsBottomNavigation
+import com.example.newsapp.presenter.navigationcomponents.NewsBottomNavigation
+import com.example.newsapp.presenter.navigationcomponents.NewsDrawerNavigation
+import com.example.newsapp.presenter.navigationcomponents.SearchFabButton
 import com.example.newsapp.presenter.screens.utils.NewsCard
+import com.example.newsapp.presenter.screens.utils.NewsTopBar
 import com.example.newsapp.presenter.viewmodel.NewsViewModel
+import kotlinx.coroutines.launch
 
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -27,6 +33,12 @@ fun SearchScreen(
     navController: NavController,
     isInternetAvailableChange: (Boolean) -> Unit,
 ) {
+
+
+    val scaffoldState = rememberScaffoldState()
+
+    val coroutineScope = rememberCoroutineScope()
+
     var query by remember{
         mutableStateOf("")
     }
@@ -47,13 +59,22 @@ fun SearchScreen(
         mutableStateOf(1)
     }
 
+    var initialLoadDone by remember {
+        mutableStateOf(false)
+    }
+
+    var isCardVisible by remember{
+        mutableStateOf(false)
+    }
 
     LaunchedEffect(updatedQuery){
         Log.d("debugging", "Inside updatedquery launched effect")
         if(updatedQuery.isNotBlank() && NetworkCheck.isInternetAvailable(context)){
+            Log.d("debugging", "Entered if block")
             val articleResponse = newsViewModel.getSearchedNews(updatedQuery, pageToLoad)
             articles.clear()
             articles.addAll(articleResponse)
+            initialLoadDone = true
         }else if(!NetworkCheck.isInternetAvailable(context)){
             isInternetAvailableChange(false)
         }
@@ -70,8 +91,29 @@ fun SearchScreen(
     }
 
     Scaffold(
+        scaffoldState = scaffoldState,
         bottomBar = {
             NewsBottomNavigation(navController = navController)
+        },
+        topBar = { NewsTopBar {
+            if(scaffoldState.drawerState.isOpen){
+                coroutineScope.launch{
+                    scaffoldState.drawerState.close()
+                }
+            }else{
+                coroutineScope.launch{
+                    scaffoldState.drawerState.open()
+                }
+            }
+        }
+        },
+        floatingActionButton = {
+            SearchFabButton(navController = navController)
+        },
+        floatingActionButtonPosition = FabPosition.Center,
+        isFloatingActionButtonDocked = true,
+        drawerContent = {
+            NewsDrawerNavigation(navController = navController)
         }
     ) {
         Column(
@@ -91,7 +133,7 @@ fun SearchScreen(
                             newsViewModel.searchQuery = updatedQuery
                             pageToLoad = 1
                         }else if(!NetworkCheck.isInternetAvailable(context)){
-                            Toast.makeText(context, "Internet not available", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(context, "Internet not available", Toast.LENGTH_LONG).show()
                         }
                     }) {
                         Icon(
@@ -101,18 +143,26 @@ fun SearchScreen(
                     }
                 }
             )
-            
-            LazyColumn{
-                itemsIndexed(articles){ index , item->
 
-                    if(index == articles.size - 1 && articles.size != 0 && !shouldLoadPagingData && NetworkCheck.isInternetAvailable(context)){
-                        shouldLoadPagingData = true
-                    }
-                    if(item.description != null && item.description.isNotBlank()){
-                        NewsCard(
-                            navController = navController,
-                            it = item
-                        )
+            if(articles.isEmpty() && initialLoadDone){
+                NoNewsScreen(navController)
+            }else if(articles.isNotEmpty()){
+                isCardVisible = true
+                LazyColumn{
+                    itemsIndexed(articles){ index , item->
+                        if(index == articles.size - 1 && articles.size != 0 && !shouldLoadPagingData && NetworkCheck.isInternetAvailable(context)){
+                            shouldLoadPagingData = true
+                        }
+                        if(item.description != null && item.description.isNotBlank()){
+                            AnimatedVisibility(
+                                visible = isCardVisible
+                            ) {
+                                NewsCard(
+                                    navController = navController,
+                                    it = item
+                                )
+                            }
+                        }
                     }
                 }
             }

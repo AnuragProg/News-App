@@ -10,4 +10,5 @@ interface NewsRepository {
 
     suspend fun getSearchedNews(query: String, page: Int): Response<NewsResponse>
 
+    suspend fun getCategoryNews(category: String, page: Int): Response<NewsResponse>
 }

@@ -18,5 +18,9 @@ class NewsRepositoryImpl(
         return newsService.getSearchedNews(query = query, page = page)
     }
 
+    override suspend fun getCategoryNews(category: String, page: Int): Response<NewsResponse> {
+        return newsService.getCategoryNews(category = category, page = page)
+    }
+
 
 }

@@ -27,4 +27,11 @@ interface NewsService {
         @Query("language") language: String = "en"
     ) : Response<NewsResponse>
 
+    @GET(TOPHEADLINES)
+    suspend fun getCategoryNews(
+        @Query("category") category: String,
+        @Query("apiKey") apikey: String = APIKEY,
+        @Query("page") page: Int = 1,
+        @Query("language") language: String = "en"
+    ) : Response<NewsResponse>
 }

@@ -72,7 +72,7 @@ fun NewsCard(
             Text(
                 modifier = Modifier
                     .padding(5.dp),
-                text = it.description,
+                text = it.title,
                 fontSize = 17.sp,
                 maxLines = 3,
                 overflow = TextOverflow.Ellipsis,
