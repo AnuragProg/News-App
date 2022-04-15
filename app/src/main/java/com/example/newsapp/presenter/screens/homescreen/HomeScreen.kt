@@ -6,8 +6,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -109,7 +107,7 @@ fun HomeScreen(
             if (!NetworkCheck.isInternetAvailable(context)) {
                 isInternetAvailableChange(false)
             } else if (isInitialLoadDone && articles.isEmpty() && NetworkCheck.isInternetAvailable(context)) {
-                NoNewsScreen(navController)
+                NoNewsScreen()
             } else if (!isInitialLoadDone && articles.isEmpty() && NetworkCheck.isInternetAvailable(context)){
                 CircularProgressIndicator()
             } else if (articles.isNotEmpty()) {

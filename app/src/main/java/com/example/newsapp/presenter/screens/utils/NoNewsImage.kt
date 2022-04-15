@@ -16,8 +16,6 @@ import com.example.newsapp.R
 
 @Composable
 fun NoNewsImage(
-    painter: Painter,
-    contentDescription: String,
     extraInfo: String?
 ){
 

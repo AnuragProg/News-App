@@ -145,7 +145,7 @@ fun SearchScreen(
             )
 
             if(articles.isEmpty() && initialLoadDone){
-                NoNewsScreen(navController)
+                NoNewsScreen()
             }else if(articles.isNotEmpty()){
                 isCardVisible = true
                 LazyColumn{

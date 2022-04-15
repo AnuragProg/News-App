@@ -12,17 +12,14 @@ import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
-import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import androidx.navigation.navArgument
 import com.example.newsapp.presenter.screens.nointernetscreen.NoInternetScreen
 import com.example.newsapp.presenter.screens.businessscreen.BusinessScreen
 import com.example.newsapp.presenter.screens.entertainment.EntertainmentScreen
 import com.example.newsapp.presenter.screens.healthscreen.HealthScreen
 import com.example.newsapp.presenter.screens.homescreen.HomeScreen
-import com.example.newsapp.presenter.screens.newsscreen.NewsScreen
 import com.example.newsapp.presenter.screens.sciencescreen.ScienceScreen
 import com.example.newsapp.presenter.screens.searchscreen.SearchScreen
 import com.example.newsapp.presenter.screens.splashscreen.SplashScreen
@@ -84,18 +81,6 @@ fun NavigationHost(){
                 context.finish()
             }
         }
-        composable(
-            "${Destinations.NewsScreen.route}/{url}",
-            arguments = listOf(navArgument("url"){
-                type = NavType.StringType
-            })
-        ){
-            val url = it.arguments?.getString("url")
-            NewsScreen(
-                url,
-                navController
-            )
-        }
         composable(Destinations.SearchScreen.route){
             if(isInternetAvailable){
                 val newsViewModel = hiltViewModel<NewsViewModel>()
@@ -111,7 +96,6 @@ fun NavigationHost(){
                 ){ isInternetAvailable = true }
             }
         }
-
         composable(Destinations.SportsScreen.route){
             if(isInternetAvailable){
                 val newsViewModel = hiltViewModel<NewsViewModel>()
@@ -142,7 +126,6 @@ fun NavigationHost(){
                 ){ isInternetAvailable = true }
             }
         }
-        // work from here
         composable(DestinationsExtended.ScienceScreen.route){
             if(isInternetAvailable){
                 val newsViewModel = hiltViewModel<NewsViewModel>()

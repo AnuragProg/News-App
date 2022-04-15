@@ -108,7 +108,7 @@ fun TechnologyScreen(
             if (!NetworkCheck.isInternetAvailable(context)) {
                 isInternetAvailableChange(false)
             } else if (isInitialLoadDone && articles.isEmpty() && NetworkCheck.isInternetAvailable(context)) {
-                NoNewsScreen(navController)
+                NoNewsScreen()
             } else if (!isInitialLoadDone && articles.isEmpty() && NetworkCheck.isInternetAvailable(context)){
                 CircularProgressIndicator()
             } else if (articles.isNotEmpty()) {

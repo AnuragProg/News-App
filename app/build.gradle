@@ -86,9 +86,6 @@ dependencies {
     // compose ViewModel
     implementation 'androidx.lifecycle:lifecycle-viewmodel-compose:2.4.1'
 
-    // WebView
-    implementation 'com.google.accompanist:accompanist-webview:0.24.5-alpha'
-
     // swipe refresh
     implementation "com.google.accompanist:accompanist-swiperefresh:0.23.1"
 

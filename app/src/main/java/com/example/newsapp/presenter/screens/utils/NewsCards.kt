@@ -2,6 +2,11 @@ package com.example.newsapp.presenter.screens.utils
 
 
 
+import android.content.ActivityNotFoundException
+import android.content.Intent
+import android.net.Uri
+import android.util.Log
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -17,10 +22,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.content.ContextCompat.startActivity
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.example.newsapp.domain.model.Article
@@ -35,6 +42,8 @@ fun NewsCard(
     navController: NavController,
     it: Article
 ){
+    val context = LocalContext.current
+
     Card(
         modifier = Modifier
             .height(250.dp)
@@ -42,9 +51,20 @@ fun NewsCard(
             .padding(10.dp),
         elevation = 10.dp,
         onClick = {
-            val url =
-                URLEncoder.encode(it.url, StandardCharsets.UTF_8.toString())
-            navController.navigate("${Destinations.NewsScreen.route}/$url")
+            var url = it.url
+
+            if(!url.startsWith("https://")&& !url.startsWith("http://")){
+                url = "http://$url"
+            }
+            val intent = Intent(Intent.ACTION_VIEW).apply{
+                data = Uri.parse(url)
+            }
+            Log.d("urls", "url is $url")
+            try{
+                startActivity(context, intent, null)
+            }catch(e: ActivityNotFoundException){
+                Toast.makeText(context, "Browser Not Found", Toast.LENGTH_SHORT).show()
+            }
         },
         shape = RoundedCornerShape(10.dp)
     ) {
@@ -77,11 +97,6 @@ fun NewsCard(
                 maxLines = 3,
                 overflow = TextOverflow.Ellipsis,
                 color = Color.White,
-//                fontFamily = FontFamily(
-//                    Font(
-//                        R.font.pacifico_regular
-//                    )
-//                )
             )
         }
     }

@@ -113,7 +113,7 @@ fun SportsScreen(
             }else if(!isInitialLoadDone && articles.isEmpty() && NetworkCheck.isInternetAvailable(context)){
                 CircularProgressIndicator()
             }else if(isInitialLoadDone && articles.isEmpty()){
-                NoNewsScreen(navController)
+                NoNewsScreen()
             }else{
                 LazyColumn(){
                     itemsIndexed(articles.filter{it.title !=null && it.title.isNotBlank()}){ index, it ->
