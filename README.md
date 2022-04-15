@@ -1,11 +1,8 @@
 # News-App
 
-## A Simple News App in Jetpack Compose that fetched news from https://newsapi.org and display to user
 
-- Used Lazy Column to show News cards effeciently
-- Retrofit used for fetching json response from the server
-- Used Clean Architecture to make the app code base future modifiable
-- Makes use of Coil library for loading images on News Cards
-- Uses Dagger Hilt for dependency injection
-- Use cases for domain layer for providing data in required format
 
+<img src=https://github.com/AnuragProg/News-App/blob/main/screenshots/Splash%20Screen%20Screenshot.png width=500 height=800>
+<img src=https://github.com/AnuragProg/News-App/blob/main/screenshots/Home%20Screen%20screenshot.png width=500 height=800>
+<img src=https://github.com/AnuragProg/News-App/blob/main/screenshots/Navigation%20Drawer%20Screenshot.png width=500 height=800>
+<img src=https://github.com/AnuragProg/News-App/blob/main/screenshots/No%20internet%20connection%20handling.png width=500 height=800>
