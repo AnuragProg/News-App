@@ -1,7 +1,6 @@
 package com.example.newsapp.presenter.screens.sportsscreen
 
 import android.content.Context
-import android.util.Log
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -54,7 +53,6 @@ fun SportsScreen(
 
     LaunchedEffect(Unit){
         if(NetworkCheck.isInternetAvailable(context)){
-            Log.d("debugging", "Loading initial sports news")
             val articleResponse = newsViewModel.getSportsHeadlines(pageToLoad++)
             articles.addAll(articleResponse)
             isInitialLoadDone = true
@@ -65,7 +63,6 @@ fun SportsScreen(
 
     LaunchedEffect(shouldLoadMoreData){
         if(shouldLoadMoreData){
-            Log.d("debugging", "Loading more sports news data")
             val articleResponse = newsViewModel.getSportsHeadlines(pageToLoad++)
             articles.addAll(articleResponse)
             shouldLoadMoreData = false
@@ -121,7 +118,6 @@ fun SportsScreen(
                             shouldLoadMoreData = true
                         }else{
                             NewsCard(
-                                navController = navController,
                                 it = it
                             )
                         }

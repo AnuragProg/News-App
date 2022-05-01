@@ -1,16 +1,9 @@
 package com.example.newsapp.presenter.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
-import androidx.paging.PagingData
 import com.example.newsapp.domain.model.Article
 import com.example.newsapp.domain.usecases.NewsUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.Flow
-import java.net.Socket
-import java.net.SocketTimeoutException
 import javax.inject.Inject
 
 @HiltViewModel
@@ -18,9 +11,7 @@ class NewsViewModel @Inject constructor(
     private val newsUseCases: NewsUseCases
 ): ViewModel() {
 
-
     var searchQuery : String = ""
-
 
     suspend fun getTopHeadlines(country: String = "in", page: Int): List<Article>{
         return newsUseCases.getTopHeadlinesUseCase(country, page)
@@ -41,15 +32,17 @@ class NewsViewModel @Inject constructor(
     suspend fun getScienceHeadlines(page: Int) : List<Article>{
         return newsUseCases.getScienceHeadlinesUseCase(page = page)
     }
+
     suspend fun getTechnologyHeadlines(page: Int) : List<Article>{
         return newsUseCases.getTechnologyHeadlinesUseCase(page = page)
     }
+
     suspend fun getHealthHeadlines(page: Int) : List<Article>{
         return newsUseCases.getHealthHeadlinesUseCase(page = page)
     }
+
     suspend fun getEntertainmentHeadlines(page: Int) : List<Article>{
         return newsUseCases.getEntertainmentHeadlinesUseCase(page = page)
     }
-
 
 }

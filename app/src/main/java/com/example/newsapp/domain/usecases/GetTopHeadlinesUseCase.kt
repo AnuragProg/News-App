@@ -2,7 +2,6 @@ package com.example.newsapp.domain.usecases
 
 import com.example.newsapp.domain.model.Article
 import com.example.newsapp.domain.repository.NewsRepository
-import okio.Timeout
 import java.net.SocketTimeoutException
 
 class GetTopHeadlinesUseCase(

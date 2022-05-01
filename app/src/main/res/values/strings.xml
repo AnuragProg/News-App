@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">News App</string>
+    <string name="no_internet">No Internet</string>
+    <string name="please_connect_to_internet">Please Connect to Internet</string>
+    <string name="internet_not_available">Internet not available</string>
+    <string name="retry">Retry</string>
+    <string name="no_news_available">No News Available</string>
+    <string name="unable_to_load_news">Unable to load news</string>
+    <string name="search">Search</string>
+    <string name="news_splash_screen">News Splash Screen</string>
+    <string name="read_news_everyday">Read News Everyday</string>
+    <string name="browser_not_found">Browser Not Found</string>
+    <string name="news_image">News Image</string>
+    <string name="menu">Menu</string>
 </resources>

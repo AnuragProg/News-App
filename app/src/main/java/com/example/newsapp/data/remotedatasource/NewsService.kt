@@ -2,7 +2,7 @@ package com.example.newsapp.data.remotedatasource
 
 import com.example.newsapp.data.utils.NewsServiceUtils.APIKEY
 import com.example.newsapp.data.utils.NewsServiceUtils.EVERYTHING
-import com.example.newsapp.data.utils.NewsServiceUtils.TOPHEADLINES
+import com.example.newsapp.data.utils.NewsServiceUtils.TOP_HEADLINES
 import com.example.newsapp.domain.model.NewsResponse
 import retrofit2.Response
 import retrofit2.http.GET
@@ -11,7 +11,7 @@ import retrofit2.http.Query
 
 interface NewsService {
 
-    @GET(TOPHEADLINES)
+    @GET(TOP_HEADLINES)
     suspend fun getTopHeadlines(
         @Query("country") country: String,
         @Query("apiKey") apikey: String = APIKEY,
@@ -27,7 +27,7 @@ interface NewsService {
         @Query("language") language: String = "en"
     ) : Response<NewsResponse>
 
-    @GET(TOPHEADLINES)
+    @GET(TOP_HEADLINES)
     suspend fun getCategoryNews(
         @Query("category") category: String,
         @Query("apiKey") apikey: String = APIKEY,

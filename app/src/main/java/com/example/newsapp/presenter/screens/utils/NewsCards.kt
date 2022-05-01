@@ -24,22 +24,18 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat.startActivity
-import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.example.newsapp.domain.model.Article
-import com.example.newsapp.presenter.navigationcomponents.Destinations
-import java.net.URLEncoder
-import java.nio.charset.StandardCharsets
 import com.example.newsapp.R
 
 @ExperimentalMaterialApi
 @Composable
 fun NewsCard(
-    navController: NavController,
     it: Article
 ){
     val context = LocalContext.current
@@ -63,7 +59,7 @@ fun NewsCard(
             try{
                 startActivity(context, intent, null)
             }catch(e: ActivityNotFoundException){
-                Toast.makeText(context, "Browser Not Found", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, context.getString(R.string.browser_not_found), Toast.LENGTH_SHORT).show()
             }
         },
         shape = RoundedCornerShape(10.dp)
@@ -72,7 +68,7 @@ fun NewsCard(
         AsyncImage(
             model = it.urlToImage,
             placeholder = painterResource(id = R.drawable.loading_news_placeholder),
-            contentDescription = "News Image",
+            contentDescription = stringResource(id = R.string.news_image),
 
             contentScale = ContentScale.Crop
         )

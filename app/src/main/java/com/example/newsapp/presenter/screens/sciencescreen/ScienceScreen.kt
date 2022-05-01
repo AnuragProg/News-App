@@ -1,7 +1,6 @@
 package com.example.newsapp.presenter.screens.sciencescreen
 
 import android.content.Context
-import android.util.Log
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -57,10 +56,7 @@ fun ScienceScreen(
         if(!NetworkCheck.isInternetAvailable(context)){
             isInternetAvailableChange(false)
         }else{
-            Log.d("debugging", "Starting to fetch headlines from api")
             val articleResponse = newsViewModel.getScienceHeadlines(page = pageToLoad)
-            Log.d("debugging", "Article Response from initial launch is $articleResponse")
-
             articles.addAll(articleResponse.filter{ it.title != null })
             isInitialLoadDone = true
         }
@@ -115,14 +111,11 @@ fun ScienceScreen(
             } else if (articles.isNotEmpty()) {
                 LazyColumn {
                     itemsIndexed(articles) { index, item ->
-                        // check if we reached at the end of non empty article list
-                        // check also that there is no other same loading taking place
                         if (index == articles.size - 1 && articles.size != 0 && !shouldLoadMoreHeadlines && NetworkCheck.isInternetAvailable(context)) {
                             shouldLoadMoreHeadlines = true
                         }
                         else{
                             NewsCard(
-                                navController,
                                 item
                             )
                         }

@@ -14,6 +14,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.navigation.NavController
 import com.example.newsapp.R
@@ -66,13 +67,14 @@ fun SplashScreen(
                 Image(
                     modifier = Modifier.fillMaxWidth(),
                     painter = painterResource(id = R.drawable.news_splash_screen),
-                    contentDescription = "News Splash Screen"
+                    contentDescription = stringResource(id = R.string.news_splash_screen)
                 )
             }
             Text(
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier
+                    .fillMaxWidth()
                     .alpha(textAlpha),
-                text = "Read News Everyday",
+                text = stringResource(id = R.string.read_news_everyday),
                 textAlign = TextAlign.Center
             )
         }

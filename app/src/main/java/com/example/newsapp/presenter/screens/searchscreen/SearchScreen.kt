@@ -1,7 +1,6 @@
 package com.example.newsapp.presenter.screens.searchscreen
 
 import android.content.Context
-import android.util.Log
 import android.widget.Toast
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.*
@@ -11,8 +10,10 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.example.newsapp.R
 import com.example.newsapp.domain.model.Article
 import com.example.newsapp.presenter.screens.nonewsscreen.NoNewsScreen
 import com.example.newsapp.presenter.screens.utils.NetworkCheck
@@ -68,9 +69,7 @@ fun SearchScreen(
     }
 
     LaunchedEffect(updatedQuery){
-        Log.d("debugging", "Inside updatedquery launched effect")
         if(updatedQuery.isNotBlank() && NetworkCheck.isInternetAvailable(context)){
-            Log.d("debugging", "Entered if block")
             val articleResponse = newsViewModel.getSearchedNews(updatedQuery, pageToLoad)
             articles.clear()
             articles.addAll(articleResponse)
@@ -81,9 +80,7 @@ fun SearchScreen(
     }
 
     LaunchedEffect(shouldLoadPagingData){
-        Log.d("debugging", "inside should load paging data launched effect")
         if(shouldLoadPagingData && NetworkCheck.isInternetAvailable(context)){
-            Log.d("debugging", "Started loading more data")
             val articleResponse = newsViewModel.getSearchedNews(newsViewModel.searchQuery, ++pageToLoad)
             articles.addAll(articleResponse)
             shouldLoadPagingData = false
@@ -133,12 +130,12 @@ fun SearchScreen(
                             newsViewModel.searchQuery = updatedQuery
                             pageToLoad = 1
                         }else if(!NetworkCheck.isInternetAvailable(context)){
-                            Toast.makeText(context, "Internet not available", Toast.LENGTH_LONG).show()
+                            Toast.makeText(context, context.getString(R.string.internet_not_available), Toast.LENGTH_LONG).show()
                         }
                     }) {
                         Icon(
                             Icons.Filled.Search,
-                            contentDescription = "Search"
+                            contentDescription = stringResource(id = R.string.search)
                         )
                     }
                 }
@@ -158,7 +155,6 @@ fun SearchScreen(
                                 visible = isCardVisible
                             ) {
                                 NewsCard(
-                                    navController = navController,
                                     it = item
                                 )
                             }

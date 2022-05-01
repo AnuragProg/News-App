@@ -8,6 +8,8 @@ import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.res.stringResource
+import com.example.newsapp.R
 
 
 @Composable
@@ -17,7 +19,7 @@ fun NewsTopBar(
 
     TopAppBar(
         title = {
-                Text("News App")
+                Text(stringResource(id = R.string.app_name))
         },
         navigationIcon = {
             IconButton( onClick = {
@@ -25,7 +27,7 @@ fun NewsTopBar(
             } ) {
                 Icon(
                     Icons.Filled.Menu,
-                    contentDescription = "Menu"
+                    contentDescription = stringResource(id = R.string.menu)
                 )
             }
         },

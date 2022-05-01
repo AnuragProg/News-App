@@ -27,7 +27,6 @@ fun NewsDrawerNavigation(
 
 
     Column(){
-
         Image(
             modifier = Modifier
                 .fillMaxWidth()

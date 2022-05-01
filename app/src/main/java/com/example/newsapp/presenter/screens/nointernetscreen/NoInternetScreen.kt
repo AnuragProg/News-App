@@ -11,6 +11,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -66,16 +67,17 @@ fun NoInternetScreen(
         ){
             Column{
                 Image(
-                    modifier = Modifier.size(150.dp, 150.dp)
+                    modifier = Modifier
+                        .size(150.dp, 150.dp)
                         .align(
-                        Alignment.CenterHorizontally
-                    ),
+                            Alignment.CenterHorizontally
+                        ),
                     painter = painterResource(id = R.drawable.no_internet),
-                    contentDescription = "No internet"
+                    contentDescription = stringResource(id = R.string.no_internet)
                 )
                 Spacer(modifier = Modifier.height(10.dp))
                 Text(
-                    text = "Please Connect to Internet",
+                    text = stringResource(id = R.string.please_connect_to_internet),
                     modifier = Modifier.fillMaxWidth(),
                     textAlign = TextAlign.Center
                 )
@@ -86,12 +88,12 @@ fun NoInternetScreen(
                         if(NetworkCheck.isInternetAvailable(context)){
                             isInternetAvailableStateChange()
                         }else{
-                            Toast.makeText(context, "Internet not available", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(context, context.getString(R.string.internet_not_available), Toast.LENGTH_SHORT).show()
                         }
                     },
                     colors = ButtonDefaults.buttonColors(backgroundColor = Color.White)
                     ){
-                    Text("Retry", color = Color.Blue)
+                    Text(stringResource(id = R.string.retry), color = Color.Blue)
                 }
             }
         }

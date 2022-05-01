@@ -33,7 +33,6 @@ import com.example.newsapp.presenter.viewmodel.NewsViewModel
 fun NavigationHost(){
 
 
-
     val navController = rememberNavController()
     val context = LocalContext.current as Activity
     val lifecycleOwner = LocalLifecycleOwner.current
@@ -95,6 +94,9 @@ fun NavigationHost(){
                     navController
                 ){ isInternetAvailable = true }
             }
+            BackHandler(enabled = true) {
+                context.finish()
+            }
         }
         composable(Destinations.SportsScreen.route){
             if(isInternetAvailable){
@@ -109,6 +111,9 @@ fun NavigationHost(){
                     context,
                     navController
                 ){ isInternetAvailable = true }
+            }
+            BackHandler(enabled = true) {
+                context.finish()
             }
         }
         composable(Destinations.BusinessScreen.route){
@@ -125,6 +130,9 @@ fun NavigationHost(){
                     navController
                 ){ isInternetAvailable = true }
             }
+            BackHandler(enabled = true) {
+                context.finish()
+            }
         }
         composable(DestinationsExtended.ScienceScreen.route){
             if(isInternetAvailable){
@@ -139,6 +147,9 @@ fun NavigationHost(){
                     context,
                     navController
                 ){ isInternetAvailable = true }
+            }
+            BackHandler(enabled = true) {
+                context.finish()
             }
         }
         composable(Destinations.TechnologyScreen.route){
@@ -155,6 +166,9 @@ fun NavigationHost(){
                     navController
                 ){ isInternetAvailable = true }
             }
+            BackHandler(enabled = true) {
+                context.finish()
+            }
         }
         composable(DestinationsExtended.HealthScreen.route){
             if(isInternetAvailable){
@@ -170,6 +184,9 @@ fun NavigationHost(){
                     navController
                 ){ isInternetAvailable = true }
             }
+            BackHandler(enabled = true) {
+                context.finish()
+            }
         }
         composable(DestinationsExtended.EntertainmentScreen.route){
             if(isInternetAvailable){
@@ -184,6 +201,9 @@ fun NavigationHost(){
                     context,
                     navController
                 ){ isInternetAvailable = true }
+            }
+            BackHandler(enabled = true) {
+                context.finish()
             }
         }
     }

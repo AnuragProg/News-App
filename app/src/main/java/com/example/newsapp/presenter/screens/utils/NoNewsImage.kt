@@ -8,9 +8,9 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.FixedScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import com.example.newsapp.R
 
@@ -27,7 +27,7 @@ fun NoNewsImage(
             Image(
                 painter = painterResource(R.drawable.no_news_available_image),
                 contentScale = FixedScale(0.5f),
-                contentDescription = "No News Available"
+                contentDescription = stringResource(id = R.string.no_news_available)
             )
             if(extraInfo != null){
                 Text(
