@@ -1,17 +1,15 @@
 # News-App
 A Simple News Application to keep you updated about the happenings around the world.
 
-## Techonologies Used :
--> Jetpack Compose for UI  
--> Retrofit for fetching data from API  
--> Dagger-Hilt for dependency injection  
--> Coil for loading Images  
--> Clean Architecture for providing better structure to source code  
--> Custom Paging (Not used Official Paging Library) for providing more data lazily  
+## About:
+1. Android app that allows user to read daily news of various categories.
+2. App makes api calls to newsapi.org to retrieve desired news headlines.
+3. Provides various screens for reading different category news headlines(for e.g health, science, sports etc.).
+4. Also provides a screen for searching for desired topics.
+5. App has paging implemented to minimize API calls.
 
-## Miscellaneous :
--> Can detect whether device connected to Internet to prevent app from crashing  
--> Error Handling capabilities in case of failure in getting response from API server  
+### Tech Used: Kotlin(Programming Language), Dagger-Hilt(Dependency Injection), Retrofit(API calls), Coil(Loading Images).
+Code Architecture: Clean Architecture
 
   
 ## ScreenShots :
