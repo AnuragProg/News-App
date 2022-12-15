@@ -9,7 +9,7 @@ A Simple News Application to keep you updated about the happenings around the wo
 5. App has paging implemented to minimize API calls.
 
 ### Tech Used: Kotlin(Programming Language), Dagger-Hilt(Dependency Injection), Retrofit(API calls), Coil(Loading Images).
-Code Architecture: Clean Architecture
+### Code Architecture: Clean Architecture
 
   
 ## ScreenShots :
