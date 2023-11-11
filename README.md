@@ -12,10 +12,12 @@ A simple News Application to keep you updated about the happenings around the wo
 
 ## Screenshots
 
-<img src=https://github.com/AnuragProg/News-App/blob/main/screenshots/Splash%20Screen%20Screenshot.png width=200 height=450>
-<img src=https://github.com/AnuragProg/News-App/blob/main/screenshots/Home%20Screen%20screenshot.png width=200 height=450>  
-<img src=https://github.com/AnuragProg/News-App/blob/main/screenshots/Navigation%20Drawer%20Screenshot.png width=200 height=450>
-<img src=https://github.com/AnuragProg/News-App/blob/main/screenshots/No%20internet%20connection%20handling.png width=200 height=450>
+<img src="https://github.com/AnuragProg/News-App/assets/95378716/5373ca4e-48af-4e09-bbb8-425879bed60c" width="220" height="450" alt="Technology Screen"/>
+<img src="https://github.com/AnuragProg/News-App/assets/95378716/942aeae6-ee09-4097-8a7a-1e0d72e2ed5c" width="220" height="450" alt="Splash Screen"/>
+<img src="https://github.com/AnuragProg/News-App/assets/95378716/88f1462b-3b9e-44cc-9951-da9ee166439a" width="220" height="450" alt="No internet connection handling"/>
+<img src="https://github.com/AnuragProg/News-App/assets/95378716/11fe711a-9e26-4133-a0c2-9512b69f56bc" width="220" height="450" alt="Navigation Drawer"/>
+<img src="https://github.com/AnuragProg/News-App/assets/95378716/0aa6744f-4710-46c4-b319-b0b0839d69dc" width="220" height="450" alt="Home Screen"/>
+<img src="https://github.com/AnuragProg/News-App/assets/95378716/2512f45b-8c6c-4913-b6c3-73a07ee96d3c" width="220" height="450" alt="Custom Search"/>
 
 ## Tech Stack
 
